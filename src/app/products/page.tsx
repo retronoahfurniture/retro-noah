@@ -24,6 +24,8 @@ const ranges = [
   { id: 'industrial', label: 'Industrial Range' },
 ]
 
+const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images'
+
 const products = [
   {
     id: 1,
@@ -36,7 +38,7 @@ const products = [
     priceFrom: 6000,
     priceTo: 18000,
     sizes: ['4-seater', '6-seater', '8-seater', '10-seater', '12-seater', '14-seater', '16-seater'],
-    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80',
+    image: `${BASE}/dining-tables/harvest-pedestal-dark.jpg`,
     featured: true,
   },
   {
@@ -50,7 +52,7 @@ const products = [
     priceFrom: 6000,
     priceTo: 16000,
     sizes: ['4-seater', '6-seater', '8-seater', '10-seater'],
-    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=700&q=80',
+    image: `${BASE}/dining-tables/farmhouse-turned-leg.jpg`,
     featured: true,
   },
   {
@@ -64,7 +66,7 @@ const products = [
     priceFrom: 10000,
     priceTo: 18000,
     sizes: ['6-seater', '8-seater', '10-seater', '12-seater', '14-seater', '16-seater'],
-    image: 'https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=700&q=80',
+    image: `${BASE}/dining-tables/industrial-steel-base.jpg`,
     featured: true,
   },
   {
@@ -78,7 +80,7 @@ const products = [
     priceFrom: 3000,
     priceTo: 8000,
     sizes: ['Small', 'Medium', 'Large'],
-    image: 'https://images.unsplash.com/photo-1532372320978-9b4f0a1e3e1c?w=700&q=80',
+    image: `${BASE}/coffee-tables/farmhouse-coffee-natural.jpg`,
     featured: false,
   },
   {
@@ -92,7 +94,7 @@ const products = [
     priceFrom: 3500,
     priceTo: 5000,
     sizes: ['Standard'],
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&q=80',
+    image: `${BASE}/side-tables/rustic-console-table.jpg`,
     featured: false,
   },
   {
@@ -106,7 +108,7 @@ const products = [
     priceFrom: 3000,
     priceTo: 5000,
     sizes: ['1.2m', '1.5m', '1.8m', '2.0m'],
-    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80',
+    image: `${BASE}/benches/farmhouse-bench-natural.jpg`,
     featured: false,
   },
   {
@@ -120,7 +122,7 @@ const products = [
     priceFrom: 8000,
     priceTo: 14000,
     sizes: ['1.2m', '1.5m', '1.8m'],
-    image: 'https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=700&q=80',
+    image: `${BASE}/sideboards/harvest-sideboard-drawers.jpg`,
     featured: false,
   },
   {
@@ -134,7 +136,7 @@ const products = [
     priceFrom: 7000,
     priceTo: 14000,
     sizes: ['4-seater', '6-seater', '8-seater'],
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80',
+    image: `${BASE}/outdoor/outdoor-chevron-set.jpg`,
     featured: false,
   },
   {
@@ -148,7 +150,7 @@ const products = [
     priceFrom: 5000,
     priceTo: 12000,
     sizes: ['600mm', '800mm', '1000mm', '1200mm'],
-    image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=700&q=80',
+    image: `${BASE}/vanities/double-basin-vanity.jpg`,
     featured: true,
   },
   {
@@ -162,7 +164,7 @@ const products = [
     priceFrom: 8000,
     priceTo: 16000,
     sizes: ['Custom'],
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80',
+    image: `${BASE}/mudroom/mudroom-unit-lifestyle.jpg`,
     featured: false,
   },
 ]

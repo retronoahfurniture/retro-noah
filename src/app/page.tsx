@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Award, Leaf, Ruler, Heart } from 'lucide-react'
 
+const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images'
+
 const ranges = [
   {
     id: 'harvest',
@@ -9,7 +11,7 @@ const ranges = [
     subtitle: 'French Country',
     description:
       'Classic French Country elegance — natural oak wash, turned or pedestal legs, timeless proportions. Our most beloved range for families who gather around the table.',
-    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&q=85',
+    image: `${BASE}/dining-tables/harvest-pedestal-dark.jpg`,
     href: '/products?range=harvest',
   },
   {
@@ -18,7 +20,7 @@ const ranges = [
     subtitle: 'Organic & Rustic',
     description:
       'Organic, earthy, and beautifully imperfect. French oak wash and aged walnut finishes over reclaimed Baltic fir. Made for homes that breathe.',
-    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=900&q=85',
+    image: `${BASE}/dining-tables/farmhouse-turned-leg.jpg`,
     href: '/products?range=farmhouse',
   },
   {
@@ -27,7 +29,7 @@ const ranges = [
     subtitle: 'Wood & Steel',
     description:
       'Steel cube bases and A-frames meet 70-year-old reclaimed wood. Bold, architectural, and unapologetically modern. For spaces that make a statement.',
-    image: 'https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=900&q=85',
+    image: `${BASE}/dining-tables/industrial-steel-base.jpg`,
     href: '/products?range=industrial',
   },
 ]
@@ -80,26 +82,26 @@ const featuredProducts = [
   {
     name: 'Harvest Dining Table',
     category: 'Dining Table',
-    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80',
+    image: `${BASE}/dining-tables/harvest-farmhouse-10seater.jpg`,
     range: 'Harvest Range',
   },
   {
-    name: 'Industrial Boardroom Table',
+    name: 'Industrial Steel Base Table',
     category: 'Dining Table',
-    image: 'https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=700&q=80',
+    image: `${BASE}/dining-tables/industrial-steel-base.jpg`,
     range: 'Industrial Range',
   },
   {
-    name: 'Rattan Bathroom Vanity',
+    name: 'Double Basin Vanity',
     category: 'Bathroom Vanity',
-    image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=700&q=80',
+    image: `${BASE}/vanities/double-basin-vanity.jpg`,
     range: 'Farmhouse Range',
   },
   {
-    name: 'Farmhouse Coffee Table',
-    category: 'Coffee Table',
-    image: 'https://images.unsplash.com/photo-1532372320978-9b4f0a1e3e1c?w=700&q=80',
-    range: 'Farmhouse Range',
+    name: 'Industrial Bench Set',
+    category: 'Bench',
+    image: `${BASE}/benches/industrial-steel-bench.jpg`,
+    range: 'Industrial Range',
   },
 ]
 
@@ -109,7 +111,7 @@ export default function Home() {
       {/* HERO */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1800&q=90"
+          src={`${BASE}/dining-tables/harvest-farmhouse-10seater.jpg`}
           alt="Retro Noah Furniture — handcrafted dining table"
           fill
           priority
@@ -376,8 +378,8 @@ export default function Home() {
       {/* FINAL CTA */}
       <section className="relative py-28 lg:py-44 overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85"
-          alt="Beautiful home with Retro Noah furniture"
+          src={`${BASE}/outdoor/outdoor-chevron-set.jpg`}
+          alt="Retro Noah outdoor furniture set"
           fill
           className="object-cover"
           unoptimized

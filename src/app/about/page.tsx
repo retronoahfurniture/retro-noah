@@ -3,6 +3,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ArrowRight } from 'lucide-react'
 
+const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images'
+
 export const metadata: Metadata = {
   title: 'Our Story | Retro Noah Furniture',
   description:
@@ -42,7 +44,7 @@ export default function AboutPage() {
       {/* HERO */}
       <section className="relative h-[60vh] min-h-[400px] flex items-end pb-16 overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1400&q=85"
+          src={`${BASE}/dining-tables/harvest-farmhouse-10seater.jpg`}
           alt="Craftsman working on reclaimed wood furniture"
           fill
           priority
@@ -76,7 +78,7 @@ export default function AboutPage() {
           </div>
           <div className="relative aspect-[4/5] overflow-hidden img-hover-zoom">
             <Image
-              src="https://images.unsplash.com/photo-1587813936280-27af7a81ed12?w=800&q=85"
+              src={`${BASE}/dining-tables/harvest-natural-8seater.jpg`}
               alt="Craftsman working on a reclaimed wood table"
               fill
               className="object-cover"
@@ -119,7 +121,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative aspect-[4/3] overflow-hidden img-hover-zoom">
             <Image
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85"
+              src={`${BASE}/sideboards/rustic-reclaimed-sideboard.jpg`}
               alt="Reclaimed wood planks — Oregon pine and Baltic fir"
               fill
               className="object-cover"
