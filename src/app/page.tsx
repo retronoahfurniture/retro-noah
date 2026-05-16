@@ -111,7 +111,7 @@ export default function Home() {
       {/* HERO */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <Image
-          src={`${BASE}/dining-tables/harvest-farmhouse-10seater.jpg`}
+          src={`${BASE}/dining-tables/harvest-natural-8seater.jpg`}
           alt="Retro Noah Furniture — handcrafted dining table"
           fill
           priority

@@ -19,7 +19,7 @@ const categories = [
 const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images'
 
 const galleryItems = [
-  { id: 1,  category: 'dining-table',    range: 'Harvest Range',    title: 'Harvest 10-Seater — Natural Finish',       image: `${BASE}/dining-tables/harvest-farmhouse-10seater.jpg`, tall: true },
+  { id: 1,  category: 'dining-table',    range: 'Farmhouse Range',  title: 'Farmhouse 12-Seater',                      image: `${BASE}/dining-tables/farmhouse-12seater.jpg`,        tall: true },
   { id: 2,  category: 'dining-table',    range: 'Harvest Range',    title: 'Harvest Table — Pedestal Base',            image: `${BASE}/dining-tables/harvest-pedestal-dark.jpg`,     tall: false },
   { id: 3,  category: 'dining-table',    range: 'Harvest Range',    title: 'Harvest Table — Grey Wash Pedestal',       image: `${BASE}/dining-tables/harvest-pedestal-grey.jpg`,     tall: false },
   { id: 4,  category: 'dining-table',    range: 'Harvest Range',    title: 'Harvest Table — Natural 8-Seater',         image: `${BASE}/dining-tables/harvest-natural-8seater.jpg`,   tall: true },
@@ -30,11 +30,9 @@ const galleryItems = [
   { id: 9,  category: 'dining-table',    range: 'Farmhouse Range',  title: 'Farmhouse Whitewash Table',                image: `${BASE}/dining-tables/farmhouse-whitewash.jpg`,       tall: false },
   { id: 10, category: 'dining-table',    range: 'Harvest Range',    title: 'Harvest Dark Walnut Dining Table',         image: `${BASE}/dining-tables/harvest-dark-walnut.jpg`,       tall: true },
   { id: 11, category: 'dining-table',    range: 'Harvest Range',    title: 'Harvest Antique Wash Table',               image: `${BASE}/dining-tables/harvest-antique-wash.jpg`,      tall: false },
-  { id: 12, category: 'dining-table',    range: 'Farmhouse Range',  title: 'Farmhouse 12-Seater',                      image: `${BASE}/dining-tables/farmhouse-12seater.jpg`,        tall: false },
   { id: 13, category: 'bench',           range: 'Industrial Range', title: 'Industrial Steel Bench',                   image: `${BASE}/benches/industrial-steel-bench.jpg`,          tall: false },
   { id: 14, category: 'bench',           range: 'Farmhouse Range',  title: 'Farmhouse Bench — Natural',                image: `${BASE}/benches/farmhouse-bench-natural.jpg`,         tall: true },
   { id: 15, category: 'bench',           range: 'Industrial Range', title: 'Workshop Bench Set',                       image: `${BASE}/benches/workshop-bench-set.jpg`,              tall: false },
-  { id: 16, category: 'coffee-table',    range: 'Harvest Range',    title: 'Farmhouse Coffee Table — Natural',         image: `${BASE}/coffee-tables/farmhouse-coffee-natural.jpg`,  tall: false },
   { id: 17, category: 'coffee-table',    range: 'Industrial Range', title: 'Industrial Glass-Top Coffee Table',        image: `${BASE}/coffee-tables/industrial-glass-coffee.jpg`,   tall: false },
   { id: 18, category: 'side-table',      range: 'Farmhouse Range',  title: 'Rustic Console Table',                     image: `${BASE}/side-tables/rustic-console-table.jpg`,        tall: true },
   { id: 19, category: 'side-table',      range: 'Harvest Range',    title: 'Whitewash Console Table',                  image: `${BASE}/side-tables/whitewash-console.jpg`,           tall: false },
@@ -54,7 +52,6 @@ const galleryItems = [
   { id: 33, category: 'other',           range: 'Industrial Range', title: 'Custom Kitchen Island',                    image: `${BASE}/other/kitchen-island.jpg`,                    tall: false },
   { id: 34, category: 'dining-table',    range: 'Harvest Range',    title: 'Harvest Table — Dining Room Lifestyle',    image: `${BASE}/dining-tables/dining-room-lifestyle.jpg`,     tall: false },
   { id: 35, category: 'dining-table',    range: 'Harvest Range',    title: 'Harvest 6-Seater — Natural Finish',        image: `${BASE}/dining-tables/harvest-6seater-natural.jpg`,   tall: true },
-  { id: 36, category: 'dining-table',    range: 'Industrial Range', title: 'Industrial Square Dining Table',           image: `${BASE}/dining-tables/industrial-square.jpg`,         tall: false },
   { id: 37, category: 'bench',           range: 'Farmhouse Range',  title: 'Bench & Dining Set',                       image: `${BASE}/benches/bench-dining-set.jpg`,                tall: false },
   { id: 38, category: 'bench',           range: 'Harvest Range',    title: 'Harvest Bench — White Wash',               image: `${BASE}/benches/harvest-bench-white.jpg`,             tall: true },
   { id: 39, category: 'side-table',      range: 'Harvest Range',    title: 'Harvest Side Table',                       image: `${BASE}/side-tables/harvest-side-table.jpg`,          tall: false },

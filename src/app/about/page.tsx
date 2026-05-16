@@ -44,8 +44,8 @@ export default function AboutPage() {
       {/* HERO */}
       <section className="relative h-[60vh] min-h-[400px] flex items-end pb-16 overflow-hidden">
         <Image
-          src={`${BASE}/dining-tables/harvest-farmhouse-10seater.jpg`}
-          alt="Craftsman working on reclaimed wood furniture"
+          src={`${BASE}/dining-tables/harvest-pedestal-dark.jpg`}
+          alt="Retro Noah handcrafted reclaimed wood dining table"
           fill
           priority
           className="object-cover"

@@ -80,7 +80,7 @@ const products = [
     priceFrom: 3000,
     priceTo: 8000,
     sizes: ['Small', 'Medium', 'Large'],
-    image: `${BASE}/coffee-tables/farmhouse-coffee-natural.jpg`,
+    image: `${BASE}/coffee-tables/industrial-glass-coffee.jpg`,
     featured: false,
   },
   {
