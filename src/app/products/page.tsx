@@ -164,7 +164,7 @@ const products = [
     priceFrom: 8000,
     priceTo: 16000,
     sizes: ['Custom'],
-    image: `${BASE}/mudroom/mudroom-unit-lifestyle.jpg`,
+    image: `${BASE}/other/kitchen-island.jpg`,
     featured: false,
   },
 ]

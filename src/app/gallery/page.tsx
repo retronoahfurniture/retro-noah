@@ -52,6 +52,20 @@ const galleryItems = [
   { id: 31, category: 'other',           range: 'Industrial Range', title: 'Mudroom Storage Unit',                     image: `${BASE}/mudroom/mudroom-unit-lifestyle.jpg`,           tall: true },
   { id: 32, category: 'other',           range: 'Farmhouse Range',  title: 'Floating Shelves',                         image: `${BASE}/other/floating-shelves.jpg`,                  tall: false },
   { id: 33, category: 'other',           range: 'Industrial Range', title: 'Custom Kitchen Island',                    image: `${BASE}/other/kitchen-island.jpg`,                    tall: false },
+  { id: 34, category: 'dining-table',    range: 'Harvest Range',    title: 'Harvest Table — Dining Room Lifestyle',    image: `${BASE}/dining-tables/dining-room-lifestyle.jpg`,     tall: false },
+  { id: 35, category: 'dining-table',    range: 'Harvest Range',    title: 'Harvest 6-Seater — Natural Finish',        image: `${BASE}/dining-tables/harvest-6seater-natural.jpg`,   tall: true },
+  { id: 36, category: 'dining-table',    range: 'Industrial Range', title: 'Industrial Square Dining Table',           image: `${BASE}/dining-tables/industrial-square.jpg`,         tall: false },
+  { id: 37, category: 'bench',           range: 'Farmhouse Range',  title: 'Bench & Dining Set',                       image: `${BASE}/benches/bench-dining-set.jpg`,                tall: false },
+  { id: 38, category: 'bench',           range: 'Harvest Range',    title: 'Harvest Bench — White Wash',               image: `${BASE}/benches/harvest-bench-white.jpg`,             tall: true },
+  { id: 39, category: 'side-table',      range: 'Harvest Range',    title: 'Harvest Side Table',                       image: `${BASE}/side-tables/harvest-side-table.jpg`,          tall: false },
+  { id: 40, category: 'side-table',      range: 'Farmhouse Range',  title: 'Natural Side Table',                       image: `${BASE}/side-tables/natural-side-table.jpg`,          tall: false },
+  { id: 41, category: 'server-sideboard',range: 'Industrial Range', title: 'Industrial Oak Sideboard',                 image: `${BASE}/sideboards/industrial-sideboard-oak.jpg`,     tall: true },
+  { id: 42, category: 'bathroom-vanity', range: 'Farmhouse Range',  title: 'Vanity — Lifestyle Shot',                  image: `${BASE}/vanities/vanity-lifestyle-modern.jpg`,         tall: false },
+  { id: 43, category: 'bathroom-vanity', range: 'Farmhouse Range',  title: 'Single Basin Vanity',                      image: `${BASE}/vanities/vanity-single-basin.jpg`,            tall: false },
+  { id: 44, category: 'outdoor',         range: 'Industrial Range', title: 'Industrial Outdoor Set',                   image: `${BASE}/outdoor/outdoor-industrial.jpg`,               tall: true },
+  { id: 45, category: 'other',           range: 'Industrial Range', title: 'Mudroom Built-In Unit',                    image: `${BASE}/mudroom/mudroom-built-in.jpg`,                 tall: false },
+  { id: 46, category: 'other',           range: 'Industrial Range', title: 'Mudroom Storage Solution',                 image: `${BASE}/mudroom/mudroom-storage.jpg`,                  tall: false },
+  { id: 47, category: 'other',           range: 'Industrial Range', title: 'Workshop Shelving Unit',                   image: `${BASE}/other/workshop-shelving.jpg`,                  tall: true },
 ]
 
 export default function GalleryPage() {

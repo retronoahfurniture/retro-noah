@@ -82,7 +82,7 @@ const featuredProducts = [
   {
     name: 'Harvest Dining Table',
     category: 'Dining Table',
-    image: `${BASE}/dining-tables/harvest-farmhouse-10seater.jpg`,
+    image: `${BASE}/dining-tables/dining-room-lifestyle.jpg`,
     range: 'Harvest Range',
   },
   {
@@ -92,16 +92,16 @@ const featuredProducts = [
     range: 'Industrial Range',
   },
   {
-    name: 'Double Basin Vanity',
+    name: 'Bathroom Vanity',
     category: 'Bathroom Vanity',
-    image: `${BASE}/vanities/double-basin-vanity.jpg`,
+    image: `${BASE}/vanities/vanity-lifestyle-modern.jpg`,
     range: 'Farmhouse Range',
   },
   {
-    name: 'Industrial Bench Set',
+    name: 'Farmhouse Bench',
     category: 'Bench',
-    image: `${BASE}/benches/industrial-steel-bench.jpg`,
-    range: 'Industrial Range',
+    image: `${BASE}/benches/bench-dining-set.jpg`,
+    range: 'Farmhouse Range',
   },
 ]
 
