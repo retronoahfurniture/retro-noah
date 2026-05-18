@@ -43,17 +43,17 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16 lg:h-20">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 shrink-0">
-          <div
-            className={`font-display font-semibold tracking-tight transition-colors duration-300 ${
-              isTransparent ? 'text-white' : 'text-[#1A1714]'
+        <Link href="/" className="flex items-center shrink-0">
+          <Image
+            src="/logo-text.png"
+            alt="Retro Noah Furniture"
+            width={110}
+            height={55}
+            priority
+            className={`h-10 lg:h-12 w-auto object-contain transition-all duration-300 ${
+              isTransparent ? 'brightness-0 invert' : ''
             }`}
-          >
-            <span className="text-xl lg:text-2xl italic">Retro Noah</span>
-            <span className="block text-[10px] font-normal tracking-[0.25em] uppercase mt-[-4px]">
-              Furniture
-            </span>
-          </div>
+          />
         </Link>
 
         {/* Desktop nav */}

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Phone, Mail, MapPin, Clock } from 'lucide-react'
 
 function IconInstagram() {
@@ -27,9 +28,21 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="mb-6">
-              <span className="font-display text-2xl italic font-medium">Retro Noah</span>
-              <span className="block text-[10px] tracking-[0.3em] uppercase text-white/50 mt-[-2px]">Furniture</span>
+            <div className="mb-6 flex items-center gap-4">
+              <Image
+                src="/logo-round-transparent.png"
+                alt="Retro Noah Furniture"
+                width={64}
+                height={64}
+                className="h-16 w-16 object-contain brightness-0 invert opacity-90"
+              />
+              <Image
+                src="/logo-text.png"
+                alt="Retro Noah Furniture"
+                width={100}
+                height={50}
+                className="h-10 w-auto object-contain brightness-0 invert opacity-90"
+              />
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
               Handcrafted bespoke furniture made from reclaimed wood. Each piece tells a 70–100 year old story.
