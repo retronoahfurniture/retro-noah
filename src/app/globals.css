@@ -119,3 +119,111 @@ p.font-display.italic {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+/* ============================================================
+   3D TRANSITIONS — Retro Noah brand motion language
+   Easing: cubic-bezier(0.16, 1, 0.3, 1) = spring-out
+   Duration 700–900ms for entrances, 300–450ms for hovers
+   All respect prefers-reduced-motion
+   ============================================================ */
+
+/* --- Scroll-triggered entrances --- */
+
+/* Depth rise: furniture floating up from a surface into view */
+@keyframes reveal3d {
+  from {
+    opacity: 0;
+    transform: perspective(700px) rotateX(12deg) translateY(44px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(700px) rotateX(0deg) translateY(0) scale(1);
+  }
+}
+
+/* Depth slide from left — like a drawer opening */
+@keyframes revealLeft {
+  from {
+    opacity: 0;
+    transform: perspective(700px) rotateY(14deg) translateX(-48px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(700px) rotateY(0deg) translateX(0) scale(1);
+  }
+}
+
+/* Depth slide from right */
+@keyframes revealRight {
+  from {
+    opacity: 0;
+    transform: perspective(700px) rotateY(-14deg) translateX(48px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(700px) rotateY(0deg) translateX(0) scale(1);
+  }
+}
+
+/* Soft scale-in from centre — for quotes/callouts */
+@keyframes revealScale {
+  from {
+    opacity: 0;
+    transform: perspective(700px) scale(0.93) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(700px) scale(1) translateY(0);
+  }
+}
+
+.reveal-3d    { animation: reveal3d    0.85s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.reveal-left  { animation: revealLeft  0.85s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.reveal-right { animation: revealRight 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.reveal-scale { animation: revealScale 0.75s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* --- Interactive hover effects --- */
+
+/* Gallery card: 3D perspective tilt — like picking up a wood plank */
+.card-3d {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.card-3d:hover {
+  transform: perspective(900px) rotateY(-6deg) rotateX(3deg) translateY(-6px);
+  box-shadow: 12px 20px 48px rgba(26, 23, 20, 0.20);
+}
+
+/* Product card: clean lift — quality piece rising off the shelf */
+.lift-hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.lift-hover:hover {
+  transform: translateY(-10px) scale(1.015);
+  box-shadow: 0 28px 56px rgba(26, 23, 20, 0.13);
+}
+
+/* Milestone / info card: subtle rise */
+.card-lift {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+}
+.card-lift:hover {
+  transform: translateY(-5px);
+}
+
+/* Respect user motion preferences — required by skill UX guidelines */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-3d, .reveal-left, .reveal-right, .reveal-scale {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .card-3d:hover, .lift-hover:hover, .card-lift:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

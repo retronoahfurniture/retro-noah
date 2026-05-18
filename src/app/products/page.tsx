@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
@@ -179,12 +179,51 @@ function formatPrice(from: number, to: number) {
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [activeRange, setActiveRange] = useState('all')
+  const gridRef = useRef<HTMLDivElement>(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
   const filtered = products.filter((p) => {
     const catMatch = activeCategory === 'all' || p.category === activeCategory
     const rangeMatch = activeRange === 'all' || p.range === activeRange
     return catMatch && rangeMatch
   })
+
+  // Staggered scroll reveal for product cards
+  useEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('.product-card'))
+    cards.forEach((el) => {
+      el.classList.remove('reveal-3d')
+      el.style.opacity = '0'
+    })
+
+    if (observerRef.current) observerRef.current.disconnect()
+
+    let idx = 0
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement
+            const delay = (idx % 3) * 100
+            idx++
+            setTimeout(() => {
+              el.style.opacity = ''
+              el.classList.add('reveal-3d')
+            }, delay)
+            observerRef.current?.unobserve(el)
+          }
+        })
+      },
+      { threshold: 0.08 }
+    )
+
+    cards.forEach((el) => observerRef.current?.observe(el))
+    return () => observerRef.current?.disconnect()
+  }, [filtered])
 
   return (
     <>
@@ -248,7 +287,7 @@ export default function ProductsPage() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {filtered.map((product) => (
-                <div key={product.id} className="group">
+                <div key={product.id} className="product-card lift-hover group">
                   <div className="relative aspect-[4/3] overflow-hidden bg-[#F8F7F4] mb-5 img-hover-zoom">
                     <Image
                       src={product.image}

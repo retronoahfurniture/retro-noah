@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -68,11 +68,51 @@ const galleryItems = [
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [lightbox, setLightbox] = useState<null | (typeof galleryItems)[0]>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
   const filtered =
     activeCategory === 'all'
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeCategory)
+
+  // Staggered 3D scroll reveal — each card enters independently as it scrolls into view
+  useEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    // Reset state when filter changes
+    const items = Array.from(grid.querySelectorAll<HTMLElement>('.masonry-item'))
+    items.forEach((el) => {
+      el.classList.remove('reveal-3d')
+      el.style.opacity = '0'
+    })
+
+    if (observerRef.current) observerRef.current.disconnect()
+
+    let staggerIndex = 0
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement
+            const delay = (staggerIndex % 4) * 90  // 4-column stagger, 90ms apart
+            staggerIndex++
+            setTimeout(() => {
+              el.style.opacity = ''
+              el.classList.add('reveal-3d')
+            }, delay)
+            observerRef.current?.unobserve(el)
+          }
+        })
+      },
+      { threshold: 0.06 }
+    )
+
+    items.forEach((el) => observerRef.current?.observe(el))
+    return () => observerRef.current?.disconnect()
+  }, [filtered])
 
   return (
     <>
@@ -111,11 +151,11 @@ export default function GalleryPage() {
       {/* MASONRY GRID */}
       <section className="py-10 lg:py-14">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="masonry">
+          <div className="masonry" ref={gridRef}>
             {filtered.map((item) => (
               <div
                 key={item.id}
-                className="masonry-item group cursor-pointer"
+                className="masonry-item card-3d group cursor-pointer"
                 onClick={() => setLightbox(item)}
               >
                 <div className={`relative overflow-hidden img-hover-zoom ${item.tall ? 'aspect-[2/3]' : 'aspect-[4/3]'}`}>

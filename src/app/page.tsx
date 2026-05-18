@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Award, Leaf, Ruler, Heart } from 'lucide-react'
+import ScrollReveal from '@/components/ScrollReveal'
 
 const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images'
 
@@ -175,22 +176,26 @@ export default function Home() {
       {/* VALUES */}
       <section className="py-20 lg:py-28 bg-[#F8F7F4]">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="text-center mb-14">
-            <p className="text-[11px] tracking-[0.3em] uppercase text-[#6B6660] mb-3">Why Retro Noah</p>
-            <h2 className="font-display text-4xl lg:text-5xl">
-              We make woodworking about{' '}
-              <em>you</em>
-            </h2>
-          </div>
+          <ScrollReveal animation="reveal-3d" threshold={0.1}>
+            <div className="text-center mb-14">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-[#6B6660] mb-3">Why Retro Noah</p>
+              <h2 className="font-display text-4xl lg:text-5xl">
+                We make woodworking about{' '}
+                <em>you</em>
+              </h2>
+            </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            {values.map(({ Icon, title, description }) => (
-              <div key={title} className="text-center">
-                <div className="w-11 h-11 border border-[#EEECE8] flex items-center justify-center mx-auto mb-5 text-[#6B6660]">
-                  <Icon size={18} />
+            {values.map(({ Icon, title, description }, i) => (
+              <ScrollReveal key={title} animation="reveal-3d" delay={i * 100} threshold={0.08}>
+                <div className="text-center card-lift">
+                  <div className="w-11 h-11 border border-[#EEECE8] flex items-center justify-center mx-auto mb-5 text-[#6B6660]">
+                    <Icon size={18} />
+                  </div>
+                  <h3 className="font-display text-xl mb-3">{title}</h3>
+                  <p className="text-[#6B6660] text-sm leading-relaxed">{description}</p>
                 </div>
-                <h3 className="font-display text-xl mb-3">{title}</h3>
-                <p className="text-[#6B6660] text-sm leading-relaxed">{description}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -199,35 +204,39 @@ export default function Home() {
       {/* FEATURED PRODUCTS */}
       <section className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <p className="text-[11px] tracking-[0.3em] uppercase text-[#6B6660] mb-3">Our Work</p>
-              <h2 className="font-display text-4xl lg:text-5xl">Featured Pieces</h2>
-            </div>
-            <Link
-              href="/gallery"
-              className="hidden sm:flex items-center gap-2 text-[12px] tracking-[0.1em] uppercase font-medium text-[#1A1714] hover:gap-4 transition-all"
-            >
-              View All <ArrowRight size={13} />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {featuredProducts.map((product) => (
-              <Link key={product.name} href="/gallery" className="group block">
-                <div className="relative overflow-hidden aspect-[3/4] bg-[#EEECE8] mb-3 img-hover-zoom">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    unoptimized
-                  />
-                </div>
-                <p className="text-[10px] tracking-[0.2em] uppercase text-[#6B6660] mb-1">{product.range}</p>
-                <h3 className="font-display text-lg">{product.name}</h3>
-                <p className="text-[#6B6660] text-xs mt-0.5">{product.category}</p>
+          <ScrollReveal animation="reveal-3d" threshold={0.1}>
+            <div className="flex items-end justify-between mb-12">
+              <div>
+                <p className="text-[11px] tracking-[0.3em] uppercase text-[#6B6660] mb-3">Our Work</p>
+                <h2 className="font-display text-4xl lg:text-5xl">Featured Pieces</h2>
+              </div>
+              <Link
+                href="/gallery"
+                className="hidden sm:flex items-center gap-2 text-[12px] tracking-[0.1em] uppercase font-medium text-[#1A1714] hover:gap-4 transition-all"
+              >
+                View All <ArrowRight size={13} />
               </Link>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {featuredProducts.map((product, i) => (
+              <ScrollReveal key={product.name} animation="reveal-3d" delay={i * 110} threshold={0.08}>
+                <Link href="/gallery" className="group block lift-hover">
+                  <div className="relative overflow-hidden aspect-[3/4] bg-[#EEECE8] mb-3 img-hover-zoom">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      unoptimized
+                    />
+                  </div>
+                  <p className="text-[10px] tracking-[0.2em] uppercase text-[#6B6660] mb-1">{product.range}</p>
+                  <h3 className="font-display text-lg">{product.name}</h3>
+                  <p className="text-[#6B6660] text-xs mt-0.5">{product.category}</p>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
           <div className="mt-10 text-center sm:hidden">
@@ -241,17 +250,23 @@ export default function Home() {
       {/* RANGES */}
       <section className="py-20 lg:py-28 bg-[#F8F7F4]">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="text-center mb-14">
-            <p className="text-[11px] tracking-[0.3em] uppercase text-[#6B6660] mb-3">Collections</p>
-            <h2 className="font-display text-4xl lg:text-5xl">Three Distinct Ranges</h2>
-          </div>
+          <ScrollReveal animation="reveal-3d" threshold={0.1}>
+            <div className="text-center mb-14">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-[#6B6660] mb-3">Collections</p>
+              <h2 className="font-display text-4xl lg:text-5xl">Three Distinct Ranges</h2>
+            </div>
+          </ScrollReveal>
           <div className="flex flex-col">
             {ranges.map((range, i) => (
               <div
                 key={range.id}
                 className={`grid grid-cols-1 lg:grid-cols-2 ${i % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}
               >
-                <div className={`relative aspect-[16/10] overflow-hidden img-hover-zoom ${i % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+                <ScrollReveal
+                  animation={i % 2 === 0 ? 'reveal-left' : 'reveal-right'}
+                  threshold={0.08}
+                  className={`relative aspect-[16/10] overflow-hidden img-hover-zoom ${i % 2 === 1 ? 'lg:col-start-2' : ''}`}
+                >
                   <Image
                     src={range.image}
                     alt={range.name}
@@ -260,8 +275,13 @@ export default function Home() {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     unoptimized
                   />
-                </div>
-                <div className={`flex items-center bg-white px-8 lg:px-16 py-12 lg:py-16 ${i % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
+                </ScrollReveal>
+                <ScrollReveal
+                  animation={i % 2 === 0 ? 'reveal-right' : 'reveal-left'}
+                  threshold={0.08}
+                  delay={80}
+                  className={`flex items-center bg-white px-8 lg:px-16 py-12 lg:py-16 ${i % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}
+                >
                   <div>
                     <p className="text-[10px] tracking-[0.3em] uppercase text-[#6B6660] mb-3">{range.subtitle}</p>
                     <h3 className="font-display text-4xl lg:text-5xl mb-5">{range.name}</h3>
@@ -273,7 +293,7 @@ export default function Home() {
                       Explore Range <ArrowRight size={12} />
                     </Link>
                   </div>
-                </div>
+                </ScrollReveal>
               </div>
             ))}
           </div>
@@ -283,59 +303,69 @@ export default function Home() {
       {/* BRAND STORY */}
       <section className="py-20 lg:py-32">
         <div className="max-w-4xl mx-auto px-6 lg:px-10 text-center">
-          <p className="text-[11px] tracking-[0.3em] uppercase text-[#6B6660] mb-6">Our Story</p>
-          <blockquote className="font-display text-3xl lg:text-5xl font-light italic leading-tight text-[#1A1714] mb-10">
-            "We saw an opportunity to make beautiful furniture from reclaimed wood — and to be a blessing to the families we serve."
-          </blockquote>
-          <div className="w-10 h-px bg-[#C8C5BE] mx-auto mb-8" />
-          <p className="text-[#6B6660] text-sm leading-relaxed max-w-2xl mx-auto mb-8">
-            Werner Geyer founded Retro Noah on biblical principles — just as Noah had a God-given talent to build the Ark, we believe our craft is a gift to share. Every piece of reclaimed wood carries 70–100 years of history from Gauteng buildings, given new life in your home.
-          </p>
-          <Link href="/about" className="inline-flex items-center gap-2 text-[12px] tracking-[0.1em] uppercase font-medium border-b border-[#1A1714] pb-0.5 hover:gap-4 transition-all">
-            Read Our Story <ArrowRight size={12} />
-          </Link>
+          <ScrollReveal animation="reveal-scale" threshold={0.1}>
+            <p className="text-[11px] tracking-[0.3em] uppercase text-[#6B6660] mb-6">Our Story</p>
+            <blockquote className="font-display text-3xl lg:text-5xl font-light italic leading-tight text-[#1A1714] mb-10">
+              "We saw an opportunity to make beautiful furniture from reclaimed wood — and to be a blessing to the families we serve."
+            </blockquote>
+            <div className="w-10 h-px bg-[#C8C5BE] mx-auto mb-8" />
+            <p className="text-[#6B6660] text-sm leading-relaxed max-w-2xl mx-auto mb-8">
+              Werner Geyer founded Retro Noah on biblical principles — just as Noah had a God-given talent to build the Ark, we believe our craft is a gift to share. Every piece of reclaimed wood carries 70–100 years of history from Gauteng buildings, given new life in your home.
+            </p>
+            <Link href="/about" className="inline-flex items-center gap-2 text-[12px] tracking-[0.1em] uppercase font-medium border-b border-[#1A1714] pb-0.5 hover:gap-4 transition-all">
+              Read Our Story <ArrowRight size={12} />
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* PROCESS */}
       <section className="py-20 lg:py-28 bg-[#1A1714] text-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="text-center mb-14">
-            <p className="text-[11px] tracking-[0.3em] uppercase text-white/35 mb-3">How It Works</p>
-            <h2 className="font-display text-4xl lg:text-5xl">From Idea to Your Home</h2>
-          </div>
+          <ScrollReveal animation="reveal-3d" threshold={0.1}>
+            <div className="text-center mb-14">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-white/35 mb-3">How It Works</p>
+              <h2 className="font-display text-4xl lg:text-5xl">From Idea to Your Home</h2>
+            </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
-            {processSteps.map(({ step, title, description }) => (
-              <div key={step} className="px-8 py-10 text-center">
-                <p className="font-display text-6xl font-light text-white/10 mb-4">{step}</p>
-                <h3 className="font-display text-2xl mb-4">{title}</h3>
-                <p className="text-white/45 text-sm leading-relaxed">{description}</p>
-              </div>
+            {processSteps.map(({ step, title, description }, i) => (
+              <ScrollReveal key={step} animation="reveal-3d" delay={i * 120} threshold={0.08}>
+                <div className="px-8 py-10 text-center">
+                  <p className="font-display text-6xl font-light text-white/10 mb-4">{step}</p>
+                  <h3 className="font-display text-2xl mb-4">{title}</h3>
+                  <p className="text-white/45 text-sm leading-relaxed">{description}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
-          <div className="mt-12 text-center">
-            <a
-              href="https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%20have%20a%20furniture%20enquiry."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-10 py-4 bg-white text-[#1A1714] text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#F8F7F4] transition-colors"
-            >
-              Start Your Order on WhatsApp
-            </a>
-          </div>
+          <ScrollReveal animation="reveal-3d" delay={360} threshold={0.08}>
+            <div className="mt-12 text-center">
+              <a
+                href="https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%20have%20a%20furniture%20enquiry."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-10 py-4 bg-white text-[#1A1714] text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#F8F7F4] transition-colors"
+              >
+                Start Your Order on WhatsApp
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* PRICING */}
       <section className="py-20 lg:py-28 bg-[#F8F7F4]">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="text-center mb-14">
-            <p className="text-[11px] tracking-[0.3em] uppercase text-[#6B6660] mb-3">Pricing Guide</p>
-            <h2 className="font-display text-4xl lg:text-5xl">Great quality, fair pricing</h2>
-            <p className="text-[#6B6660] text-sm mt-4 max-w-md mx-auto">
-              All pieces are custom-made. Final quote depends on size and finish. Contact us for a personalised price.
-            </p>
-          </div>
+          <ScrollReveal animation="reveal-3d" threshold={0.1}>
+            <div className="text-center mb-14">
+              <p className="text-[11px] tracking-[0.3em] uppercase text-[#6B6660] mb-3">Pricing Guide</p>
+              <h2 className="font-display text-4xl lg:text-5xl">Great quality, fair pricing</h2>
+              <p className="text-[#6B6660] text-sm mt-4 max-w-md mx-auto">
+                All pieces are custom-made. Final quote depends on size and finish. Contact us for a personalised price.
+              </p>
+            </div>
+          </ScrollReveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {[
               { label: 'Dining Table (6-seater)', price: 'R6k–R10k' },
@@ -344,35 +374,41 @@ export default function Home() {
               { label: 'Dining Bench', price: 'R3,000' },
               { label: 'Coffee Table', price: 'R3k–R12k' },
               { label: 'Side Table', price: 'R3,500' },
-            ].map(({ label, price }) => (
-              <div key={label} className="bg-white border border-[#EEECE8] p-5 text-center">
-                <p className="font-display text-lg font-medium text-[#1A1714] mb-1.5">{price}</p>
-                <p className="text-[#6B6660] text-xs leading-snug">{label}</p>
-              </div>
+            ].map(({ label, price }, i) => (
+              <ScrollReveal key={label} animation="reveal-3d" delay={i * 60} threshold={0.08}>
+                <div className="bg-white border border-[#EEECE8] p-5 text-center card-lift h-full">
+                  <p className="font-display text-lg font-medium text-[#1A1714] mb-1.5">{price}</p>
+                  <p className="text-[#6B6660] text-xs leading-snug">{label}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
-          <div className="mt-10 text-center">
-            <a
-              href="https://wa.me/27792808500"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#1A1714] text-white text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#2D2926] transition-colors"
-            >
-              Request a Custom Quote
-            </a>
-          </div>
+          <ScrollReveal animation="reveal-3d" delay={400} threshold={0.08}>
+            <div className="mt-10 text-center">
+              <a
+                href="https://wa.me/27792808500"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#1A1714] text-white text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#2D2926] transition-colors"
+              >
+                Request a Custom Quote
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* TESTIMONIAL */}
       <section className="py-20 lg:py-28">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <p className="font-display text-3xl lg:text-4xl italic font-light text-[#1A1714] leading-snug mb-8">
-            "We love our table — thank you very much."
-          </p>
-          <div className="w-8 h-px bg-[#C8C5BE] mx-auto mb-4" />
-          <p className="text-[11px] tracking-[0.2em] uppercase text-[#6B6660]">A Satisfied Client</p>
-        </div>
+        <ScrollReveal animation="reveal-scale" threshold={0.15}>
+          <div className="max-w-2xl mx-auto px-6 text-center">
+            <p className="font-display text-3xl lg:text-4xl italic font-light text-[#1A1714] leading-snug mb-8">
+              "We love our table — thank you very much."
+            </p>
+            <div className="w-8 h-px bg-[#C8C5BE] mx-auto mb-4" />
+            <p className="text-[11px] tracking-[0.2em] uppercase text-[#6B6660]">A Satisfied Client</p>
+          </div>
+        </ScrollReveal>
       </section>
 
       {/* FINAL CTA */}
@@ -385,22 +421,24 @@ export default function Home() {
           unoptimized
         />
         <div className="absolute inset-0 bg-black/65" />
-        <div className="relative z-10 text-center text-white px-6">
-          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl mb-6">
-            Ready to Build Your Piece?
-          </h2>
-          <p className="text-white/65 text-sm sm:text-base mb-10 max-w-md mx-auto">
-            Reach out today. We respond quickly and love hearing about your vision.
-          </p>
-          <a
-            href="https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%27d%20like%20to%20enquire%20about%20a%20custom%20piece."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-10 py-4 bg-white text-[#1A1714] text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#F8F7F4] transition-colors"
-          >
-            WhatsApp Us Now
-          </a>
-        </div>
+        <ScrollReveal animation="reveal-scale" threshold={0.1}>
+          <div className="relative z-10 text-center text-white px-6">
+            <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl mb-6">
+              Ready to Build Your Piece?
+            </h2>
+            <p className="text-white/65 text-sm sm:text-base mb-10 max-w-md mx-auto">
+              Reach out today. We respond quickly and love hearing about your vision.
+            </p>
+            <a
+              href="https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%27d%20like%20to%20enquire%20about%20a%20custom%20piece."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-10 py-4 bg-white text-[#1A1714] text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#F8F7F4] transition-colors"
+            >
+              WhatsApp Us Now
+            </a>
+          </div>
+        </ScrollReveal>
       </section>
     </>
   )
