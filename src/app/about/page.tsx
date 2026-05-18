@@ -54,7 +54,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full">
           <p className="text-[11px] tracking-[0.3em] uppercase text-white/60 mb-3">About Us</p>
-          <h1 className="font-display text-5xl lg:text-7xl text-white font-light italic">Our Story</h1>
+          <h1 className="font-display text-5xl lg:text-7xl text-white">Our Story</h1>
         </div>
       </section>
 

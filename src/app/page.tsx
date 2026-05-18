@@ -124,7 +124,7 @@ export default function Home() {
           <p className="text-[11px] tracking-[0.35em] uppercase text-white/65 mb-6 fade-in-up fade-in-up-delay-1">
             Handcrafted in Randburg, Johannesburg
           </p>
-          <h1 className="font-display text-6xl sm:text-7xl lg:text-9xl font-light italic mb-6 fade-in-up fade-in-up-delay-2">
+          <h1 className="font-display text-6xl sm:text-7xl lg:text-9xl mb-6 fade-in-up fade-in-up-delay-2">
             Retro Noah
           </h1>
           <p className="text-base sm:text-lg text-white/75 font-light max-w-lg mx-auto mb-10 fade-in-up fade-in-up-delay-3">
@@ -386,7 +386,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-black/65" />
         <div className="relative z-10 text-center text-white px-6">
-          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-light italic mb-6">
+          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl mb-6">
             Ready to Build Your Piece?
           </h2>
           <p className="text-white/65 text-sm sm:text-base mb-10 max-w-md mx-auto">
