@@ -28,20 +28,13 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="mb-6 flex items-center gap-4">
+            <div className="mb-6">
               <Image
                 src="/logo-round-transparent.png"
                 alt="Retro Noah Furniture"
-                width={64}
-                height={64}
-                className="h-16 w-16 object-contain brightness-0 invert opacity-90"
-              />
-              <Image
-                src="/logo-text.png"
-                alt="Retro Noah Furniture"
-                width={100}
-                height={50}
-                className="h-10 w-auto object-contain brightness-0 invert opacity-90"
+                width={80}
+                height={80}
+                className="h-20 w-20 object-contain brightness-0 invert opacity-90"
               />
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
