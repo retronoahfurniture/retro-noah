@@ -112,12 +112,12 @@ export default function Home() {
       {/* HERO */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <Image
-          src={`${BASE}/dining-tables/harvest-natural-8seater.jpg`}
+          src="/dining.png"
           alt="Retro Noah Furniture — handcrafted dining table"
           fill
           priority
-          className="object-cover scale-105"
-          style={{ objectPosition: 'center 40%' }}
+          className="object-cover"
+          style={{ objectPosition: 'center 30%' }}
           unoptimized
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/65" />
