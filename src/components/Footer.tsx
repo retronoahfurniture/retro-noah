@@ -32,9 +32,10 @@ export default function Footer() {
               <Image
                 src="/logo-round-transparent.png"
                 alt="Retro Noah Furniture"
-                width={80}
-                height={80}
-                className="h-20 w-20 object-contain brightness-0 invert opacity-90"
+                width={180}
+                height={180}
+                className="h-44 w-44 object-contain brightness-0 invert opacity-90"
+                style={{ transform: 'rotate(-15deg)', transformOrigin: 'center center' }}
               />
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
