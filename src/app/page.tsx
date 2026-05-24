@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { ArrowRight, Award, Leaf, Ruler, Heart } from 'lucide-react'
 import ScrollReveal from '@/components/ScrollReveal'
 
-const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images'
+const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
 
 const ranges = [
   {
@@ -12,7 +12,7 @@ const ranges = [
     subtitle: 'French Country',
     description:
       'Classic French Country elegance — natural oak wash, turned or pedestal legs, timeless proportions. Our most beloved range for families who gather around the table.',
-    image: `${BASE}/dining-tables/harvest-pedestal-dark.jpg`,
+    image: `${BASE}/dining-tables/dt-09.png`,
     href: '/products?range=harvest',
   },
   {
@@ -21,7 +21,7 @@ const ranges = [
     subtitle: 'Organic & Rustic',
     description:
       'Organic, earthy, and beautifully imperfect. French oak wash and aged walnut finishes over reclaimed Baltic fir. Made for homes that breathe.',
-    image: `${BASE}/dining-tables/farmhouse-turned-leg.jpg`,
+    image: `${BASE}/dining-tables/dt-03.png`,
     href: '/products?range=farmhouse',
   },
   {
@@ -30,7 +30,7 @@ const ranges = [
     subtitle: 'Wood & Steel',
     description:
       'Steel cube bases and A-frames meet 70-year-old reclaimed wood. Bold, architectural, and unapologetically modern. For spaces that make a statement.',
-    image: `${BASE}/dining-tables/industrial-steel-base.jpg`,
+    image: `${BASE}/dining-tables/dt-24.jpg`,
     href: '/products?range=industrial',
   },
 ]
@@ -83,25 +83,25 @@ const featuredProducts = [
   {
     name: 'Harvest Dining Table',
     category: 'Dining Table',
-    image: `${BASE}/dining-tables/dining-room-lifestyle.jpg`,
+    image: `${BASE}/dining-tables/dt-25.jpg`,
     range: 'Harvest Range',
   },
   {
-    name: 'Industrial Steel Base Table',
+    name: 'Reclaimed Dining Table',
     category: 'Dining Table',
-    image: `${BASE}/dining-tables/industrial-steel-base.jpg`,
-    range: 'Industrial Range',
+    image: `${BASE}/dining-tables/dt-33.jpg`,
+    range: 'Farmhouse Range',
   },
   {
     name: 'Bathroom Vanity',
     category: 'Bathroom Vanity',
-    image: `${BASE}/vanities/vanity-lifestyle-modern.jpg`,
+    image: `${BASE}/vanities/v-14.jpg`,
     range: 'Farmhouse Range',
   },
   {
-    name: 'Farmhouse Bench',
+    name: 'Dining Bench',
     category: 'Bench',
-    image: `${BASE}/benches/bench-dining-set.jpg`,
+    image: `${BASE}/benches/b-01.png`,
     range: 'Farmhouse Range',
   },
 ]
@@ -414,7 +414,7 @@ export default function Home() {
       {/* FINAL CTA */}
       <section className="relative py-28 lg:py-44 overflow-hidden">
         <Image
-          src={`${BASE}/outdoor/outdoor-chevron-set.jpg`}
+          src={`${BASE}/outdoor/out-02.jpg`}
           alt="Retro Noah outdoor furniture set"
           fill
           className="object-cover"

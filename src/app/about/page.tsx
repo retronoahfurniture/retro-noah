@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { ArrowRight } from 'lucide-react'
 import ScrollReveal from '@/components/ScrollReveal'
 
-const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images'
+const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
 
 export const metadata: Metadata = {
   title: 'Our Story | Retro Noah Furniture',
@@ -45,7 +45,7 @@ export default function AboutPage() {
       {/* HERO */}
       <section className="relative h-[60vh] min-h-[400px] flex items-end pb-16 overflow-hidden">
         <Image
-          src={`${BASE}/dining-tables/harvest-pedestal-dark.jpg`}
+          src={`${BASE}/dining-tables/dt-22.png`}
           alt="Retro Noah handcrafted reclaimed wood dining table"
           fill
           priority
@@ -82,7 +82,7 @@ export default function AboutPage() {
           <ScrollReveal animation="reveal-right" threshold={0.08} delay={100}>
             <div className="relative aspect-[4/5] overflow-hidden img-hover-zoom">
               <Image
-                src={`${BASE}/dining-tables/harvest-natural-8seater.jpg`}
+                src={`${BASE}/dining-tables/dt-29.jpg`}
                 alt="Craftsman working on a reclaimed wood table"
                 fill
                 className="object-cover"
@@ -133,7 +133,7 @@ export default function AboutPage() {
           <ScrollReveal animation="reveal-left" threshold={0.08}>
             <div className="relative aspect-[4/3] overflow-hidden img-hover-zoom">
               <Image
-                src={`${BASE}/sideboards/rustic-reclaimed-sideboard.jpg`}
+                src={`${BASE}/sideboards/sb-02.jpg`}
                 alt="Reclaimed wood planks — Oregon pine and Baltic fir"
                 fill
                 className="object-cover"
