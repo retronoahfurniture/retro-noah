@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Pacifico, Cormorant_Garamond, Inter } from "next/font/google";
+import { Playfair_Display, Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
-const pacifico = Pacifico({
-  weight: "400",
+const playfair = Playfair_Display({
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
-  variable: "--font-pacifico",
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -46,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${pacifico.variable} ${cormorant.variable} ${inter.variable}`}>
+    <html lang="en" className={`scroll-smooth ${playfair.variable} ${cormorant.variable} ${inter.variable}`}>
       <body className="min-h-screen flex flex-col bg-white text-[#1A1714] antialiased">
         <Navigation />
         <main className="flex-1">{children}</main>
