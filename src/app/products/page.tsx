@@ -5,6 +5,25 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
+type ProductData = {
+  id: string | number
+  name: string
+  category: string
+  range: string
+  range_label?: string
+  rangeLabel?: string
+  description: string
+  sizes: string[]
+  price_from?: number
+  price_to?: number
+  priceFrom?: number
+  priceTo?: number
+  image_url?: string
+  image?: string
+  featured: boolean
+  is_new?: boolean
+}
+
 const categories = [
   { id: 'all', label: 'All Products' },
   { id: 'dining-table', label: 'Dining Tables' },
@@ -176,13 +195,40 @@ function formatPrice(from: number, to: number) {
   return `${fmt(from)} – ${fmt(to)}`
 }
 
+function normalise(p: ProductData) {
+  return {
+    id: p.id,
+    name: p.name,
+    category: p.category,
+    range: p.range,
+    rangeLabel: p.range_label ?? p.rangeLabel ?? p.range,
+    description: p.description,
+    sizes: p.sizes,
+    priceFrom: p.price_from ?? p.priceFrom ?? 0,
+    priceTo: p.price_to ?? p.priceTo ?? 0,
+    image: p.image_url ?? p.image ?? '',
+    featured: p.featured,
+    is_new: p.is_new ?? false,
+  }
+}
+
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [activeRange, setActiveRange] = useState('all')
+  const [productList, setProductList] = useState(products.map(normalise))
   const gridRef = useRef<HTMLDivElement>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
 
-  const filtered = products.filter((p) => {
+  useEffect(() => {
+    fetch('/api/products')
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) setProductList(data.map(normalise))
+      })
+      .catch(() => {})
+  }, [])
+
+  const filtered = productList.filter((p) => {
     const catMatch = activeCategory === 'all' || p.category === activeCategory
     const rangeMatch = activeRange === 'all' || p.range === activeRange
     return catMatch && rangeMatch
@@ -223,7 +269,7 @@ export default function ProductsPage() {
 
     cards.forEach((el) => observerRef.current?.observe(el))
     return () => observerRef.current?.disconnect()
-  }, [filtered])
+  }, [filtered, productList])
 
   return (
     <>
@@ -297,11 +343,18 @@ export default function ProductsPage() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       unoptimized
                     />
-                    {product.featured && (
-                      <span className="absolute top-3 left-3 bg-[#1A1714] text-white text-[9px] tracking-[0.15em] uppercase px-2.5 py-1">
-                        Featured
-                      </span>
-                    )}
+                    <div className="absolute top-3 left-3 flex gap-1.5">
+                      {product.is_new && (
+                        <span className="bg-[#8B7355] text-white text-[9px] tracking-[0.15em] uppercase px-2.5 py-1">
+                          New
+                        </span>
+                      )}
+                      {product.featured && (
+                        <span className="bg-[#1A1714] text-white text-[9px] tracking-[0.15em] uppercase px-2.5 py-1">
+                          Featured
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <div>
                     <p className="text-[10px] tracking-[0.2em] uppercase text-[#6B6660] mb-1.5">{product.rangeLabel}</p>

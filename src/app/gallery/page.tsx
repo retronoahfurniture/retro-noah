@@ -16,6 +16,17 @@ const categories = [
   { id: 'other',            label: 'Other' },
 ]
 
+type GalleryItem = {
+  id: string | number
+  category: string
+  title?: string
+  alt?: string
+  image?: string
+  src?: string
+  tall: boolean
+  range?: string
+}
+
 const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
 
 const galleryItems = [
@@ -157,24 +168,45 @@ const galleryItems = [
   { id: 119, category: 'other',           range: 'Other',         title: 'Custom Woodwork',                      image: `${BASE}/other/oth-09.jpg`,         tall: false },
 ]
 
+function normalise(item: GalleryItem) {
+  return {
+    id: item.id,
+    category: item.category,
+    title: item.alt ?? item.title ?? '',
+    image: item.src ?? item.image ?? '',
+    tall: item.tall,
+    range: item.range ?? item.category,
+  }
+}
+
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState('all')
-  const [lightbox, setLightbox] = useState<null | (typeof galleryItems)[0]>(null)
+  const [items, setItems] = useState(galleryItems.map(normalise))
+  const [lightbox, setLightbox] = useState<ReturnType<typeof normalise> | null>(null)
   const gridRef = useRef<HTMLDivElement>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
 
+  useEffect(() => {
+    fetch('/api/gallery')
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) setItems(data.map(normalise))
+      })
+      .catch(() => {})
+  }, [])
+
   const filtered =
     activeCategory === 'all'
-      ? galleryItems
-      : galleryItems.filter((item) => item.category === activeCategory)
+      ? items
+      : items.filter((item) => item.category === activeCategory)
 
   useEffect(() => {
     const grid = gridRef.current
     if (!grid) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const items = Array.from(grid.querySelectorAll<HTMLElement>('.masonry-item'))
-    items.forEach((el) => {
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('.masonry-item'))
+    cards.forEach((el) => {
       el.classList.remove('reveal-3d')
       el.style.opacity = '0'
     })
@@ -200,7 +232,7 @@ export default function GalleryPage() {
       { threshold: 0.06 }
     )
 
-    items.forEach((el) => observerRef.current?.observe(el))
+    cards.forEach((el) => observerRef.current?.observe(el))
     return () => observerRef.current?.disconnect()
   }, [filtered])
 

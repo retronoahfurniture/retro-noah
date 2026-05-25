@@ -143,9 +143,19 @@ export default function Footer() {
           <p className="text-white/30 text-xs">
             © {new Date().getFullYear()} Retro Noah Furniture. All rights reserved.
           </p>
-          <p className="text-white/20 text-xs">
-            Crafted with care in Randburg, Johannesburg
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-white/20 text-xs">
+              Crafted with care in Randburg, Johannesburg
+            </p>
+            <Link
+              href="/admin"
+              className="text-white/20 text-[10px] hover:text-white/50 transition-colors select-none"
+              aria-hidden="true"
+              tabIndex={-1}
+            >
+              ·
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
