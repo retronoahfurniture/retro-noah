@@ -82,10 +82,10 @@ export default function AboutPage() {
           <ScrollReveal animation="reveal-right" threshold={0.08} delay={100}>
             <div className="relative aspect-[4/5] overflow-hidden img-hover-zoom">
               <Image
-                src={`${BASE}/dining-tables/dt-29.jpg`}
-                alt="Craftsman working on a reclaimed wood table"
+                src="/werner.jpg"
+                alt="Werner Geyer — Founder of Retro Noah Furniture"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 unoptimized
               />
             </div>
