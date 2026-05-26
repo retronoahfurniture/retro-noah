@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import SiteShell from "@/components/SiteShell";
 
 const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700", "800"],
@@ -49,10 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`scroll-smooth ${playfair.variable} ${cormorant.variable} ${inter.variable}`}>
       <body className="min-h-screen flex flex-col bg-white text-[#1A1714] antialiased">
-        <Navigation />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );
