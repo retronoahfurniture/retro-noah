@@ -147,7 +147,7 @@ export async function GET() {
     .select('*', { count: 'exact', head: true })
 
   let gallerySeeded = 0
-  if (galleryCount === 0) {
+  if (!galleryCount) {
     const { error: galleryError } = await supabase.from('gallery_items').insert(seedGallery)
     if (galleryError) {
       return NextResponse.json({ error: `Gallery seed failed: ${galleryError.message}` }, { status: 500 })
@@ -161,7 +161,7 @@ export async function GET() {
     .select('*', { count: 'exact', head: true })
 
   let productsSeeded = 0
-  if (productCount === 0) {
+  if (!productCount) {
     const { error: productError } = await supabase.from('products').insert(seedProducts)
     if (productError) {
       return NextResponse.json({ error: `Products seed failed: ${productError.message}` }, { status: 500 })
