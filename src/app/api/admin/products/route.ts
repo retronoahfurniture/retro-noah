@@ -1,27 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createAdminClient } from '@/lib/supabase-admin'
+import { adminFetch } from '@/lib/supabase-admin'
+
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
-  const supabase = createAdminClient()
-  const { data, error } = await supabase
-    .from('products')
-    .select('*')
-    .order('created_at', { ascending: true })
-
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  const res = await adminFetch('/products?select=*&order=created_at.asc')
+  const data = await res.json()
+  if (!res.ok) return NextResponse.json({ error: data }, { status: res.status })
   return NextResponse.json(data)
 }
 
 export async function POST(req: NextRequest) {
-  const supabase = createAdminClient()
   const body = await req.json()
-
-  const { data, error } = await supabase
-    .from('products')
-    .insert(body)
-    .select()
-    .single()
-
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  return NextResponse.json(data)
+  const res = await adminFetch('/products', {
+    method: 'POST',
+    body: JSON.stringify(body),
+  })
+  const data = await res.json()
+  if (!res.ok) return NextResponse.json({ error: data }, { status: res.status })
+  return NextResponse.json(Array.isArray(data) ? data[0] : data)
 }

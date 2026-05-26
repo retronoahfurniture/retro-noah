@@ -1,18 +1,19 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
+
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-  const { data, error } = await supabase
-    .from('gallery_items')
-    .select('*')
-    .order('sort_order', { ascending: true })
-    .order('created_at', { ascending: true })
-
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  return NextResponse.json(data)
+  try {
+    const res = await fetch(
+      `${url}/rest/v1/gallery_items?select=*&order=sort_order.asc,created_at.asc`,
+      { headers: { apikey: key!, Authorization: `Bearer ${key}` }, cache: 'no-store' }
+    )
+    if (!res.ok) return NextResponse.json({ error: await res.text() }, { status: res.status })
+    return NextResponse.json(await res.json())
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 })
+  }
 }
