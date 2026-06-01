@@ -32,6 +32,11 @@ export const metadata: Metadata = {
     "Handcrafted bespoke furniture made from reclaimed wood. Based in Randburg, Johannesburg. Dining tables, coffee tables, benches, vanities and more.",
   keywords:
     "bespoke furniture, reclaimed wood, dining tables, Johannesburg, Randburg, custom furniture, handcrafted",
+  icons: {
+    icon: "/logo-round-transparent.png",
+    shortcut: "/logo-round-transparent.png",
+    apple: "/logo-round-transparent.png",
+  },
   openGraph: {
     title: "Retro Noah Furniture",
     description: "We take woodworking and make it about YOU.",
