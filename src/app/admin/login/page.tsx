@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { Suspense } from 'react'
 
 function LoginForm() {
+  const router = useRouter()
   const searchParams = useSearchParams()
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -24,7 +25,7 @@ function LoginForm() {
 
     if (res.ok) {
       const from = searchParams.get('from') || '/admin/gallery'
-      window.location.href = from
+      router.replace(from)
     } else {
       setError('Incorrect password.')
       setLoading(false)
