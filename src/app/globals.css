@@ -80,12 +80,18 @@ p.font-display.italic {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+/* both: animation's own `from` hides during delay; `forwards` shows after.
+   If animation is disabled for any reason the element shows at full opacity. */
 .fade-in-up {
-  animation: fadeInUp 0.75s ease forwards;
+  animation: fadeInUp 0.75s ease both;
 }
-.fade-in-up-delay-1 { animation-delay: 0.1s; opacity: 0; }
-.fade-in-up-delay-2 { animation-delay: 0.25s; opacity: 0; }
-.fade-in-up-delay-3 { animation-delay: 0.4s; opacity: 0; }
+.fade-in-up-delay-1 { animation-delay: 0.1s; }
+.fade-in-up-delay-2 { animation-delay: 0.25s; }
+.fade-in-up-delay-3 { animation-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up { animation: none; }
+}
 
 /* Section divider */
 .divider {

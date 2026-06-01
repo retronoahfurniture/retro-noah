@@ -6,15 +6,10 @@ interface Props {
   children: ReactNode
   className?: string
   animation?: 'reveal-3d' | 'reveal-left' | 'reveal-right' | 'reveal-scale'
-  delay?: number      // ms before animation starts after element enters viewport
-  threshold?: number  // 0–1: how much of element must be visible to trigger
+  delay?: number
+  threshold?: number
 }
 
-/**
- * Wraps children in a div that plays a 3D entrance animation once the
- * element scrolls into view. Uses IntersectionObserver — no layout thrash.
- * Automatically disables animation when prefers-reduced-motion is set.
- */
 export default function ScrollReveal({
   children,
   className = '',
@@ -28,20 +23,28 @@ export default function ScrollReveal({
     const el = ref.current
     if (!el) return
 
-    // Respect user motion preferences (skill UX guideline: reduced-motion)
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    // Hide element until it enters the viewport
-    el.style.opacity = '0'
+    // Don't hide elements that are already visible in the viewport on mount —
+    // hiding then relying on IntersectionObserver can cause a flash if the
+    // observer fires slightly late.
+    const rect = el.getBoundingClientRect()
+    const inViewport = rect.top < window.innerHeight && rect.bottom > 0
+
+    if (!inViewport) {
+      el.style.opacity = '0'
+    }
+
+    function reveal() {
+      if (!el) return
+      el.style.opacity = ''
+      el.classList.add(animation)
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            if (!el) return
-            el.style.opacity = ''      // let the animation's keyframe control opacity
-            el.classList.add(animation)
-          }, delay)
+          setTimeout(reveal, delay)
           observer.unobserve(el)
         }
       },
@@ -49,7 +52,19 @@ export default function ScrollReveal({
     )
 
     observer.observe(el)
-    return () => observer.disconnect()
+
+    // Safety net: if the observer never fires within 3 s (e.g. unusual scroll
+    // position on load, layout quirk), force-reveal the element so content is
+    // never permanently hidden.
+    const fallback = setTimeout(() => {
+      if (el.style.opacity === '0') reveal()
+      observer.disconnect()
+    }, 3000)
+
+    return () => {
+      clearTimeout(fallback)
+      observer.disconnect()
+    }
   }, [animation, delay, threshold])
 
   return (
