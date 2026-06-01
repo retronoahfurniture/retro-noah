@@ -25,7 +25,7 @@ export default function AdminNav() {
   }
 
   return (
-    <aside className="w-56 shrink-0 bg-[#1A1714] text-white flex flex-col min-h-screen">
+    <aside className="w-56 shrink-0 bg-[#1A1714] text-white flex flex-col sticky top-0 h-screen overflow-y-auto">
       <div className="p-6 border-b border-white/10">
         <Image
           src="/logo-round-transparent.png"
