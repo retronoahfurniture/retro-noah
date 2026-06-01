@@ -4,6 +4,31 @@ import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { Pencil, Trash2, Plus, X, Check, Upload, RefreshCw } from 'lucide-react'
 
+async function compressImage(file: File): Promise<File> {
+  const MAX_WIDTH = 1600
+  const QUALITY = 0.82
+  return new Promise((resolve) => {
+    const img = new window.Image()
+    const url = URL.createObjectURL(file)
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      let { width, height } = img
+      if (width > MAX_WIDTH) { height = Math.round((height * MAX_WIDTH) / width); width = MAX_WIDTH }
+      const canvas = document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      canvas.getContext('2d')!.drawImage(img, 0, 0, width, height)
+      canvas.toBlob((blob) => {
+        if (!blob) { resolve(file); return }
+        const out = new File([blob], file.name.replace(/\.[^.]+$/, '.jpg'), { type: 'image/jpeg' })
+        resolve(out.size < file.size ? out : file)
+      }, 'image/jpeg', QUALITY)
+    }
+    img.onerror = () => { URL.revokeObjectURL(url); resolve(file) }
+    img.src = url
+  })
+}
+
 type GalleryItem = {
   id: string
   src: string
@@ -101,10 +126,11 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
     }
   }
 
-  async function handleUploadForAdd(file: File) {
+  async function handleUploadForAdd(rawFile: File) {
     if (!adding) return
     setAdding((prev) => prev ? { ...prev, uploading: true } : null)
     try {
+      const file = await compressImage(rawFile)
       const fd = new FormData()
       fd.append('file', file)
       fd.append('folder', 'gallery')
@@ -226,7 +252,7 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
                 onClick={() => addFileInputRef.current?.click()}
               >
                 {adding.src ? (
-                  <Image src={adding.src} alt="Preview" fill className="object-cover" unoptimized />
+                  <Image src={adding.src} alt="Preview" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                 ) : adding.uploading ? (
                   <div className="text-center">
                     <RefreshCw size={24} className="animate-spin text-[#6B6660] mx-auto mb-2" />
@@ -314,7 +340,6 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
                     fill
                     className="object-cover"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    unoptimized
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
                     <button

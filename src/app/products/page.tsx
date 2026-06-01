@@ -341,7 +341,6 @@ export default function ProductsPage() {
                       fill
                       className="object-cover"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      unoptimized
                     />
                     <div className="absolute top-3 left-3 flex gap-1.5">
                       {product.is_new && (

@@ -118,7 +118,7 @@ export default function Home() {
           priority
           className="object-cover"
           style={{ objectPosition: 'center 30%' }}
-          unoptimized
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/65" />
         <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
@@ -229,7 +229,6 @@ export default function Home() {
                       fill
                       className="object-cover"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      unoptimized
                     />
                   </div>
                   <p className="text-[10px] tracking-[0.2em] uppercase text-[#6B6660] mb-1">{product.range}</p>
@@ -273,7 +272,6 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    unoptimized
                   />
                 </ScrollReveal>
                 <ScrollReveal
@@ -418,7 +416,7 @@ export default function Home() {
           alt="Retro Noah outdoor furniture set"
           fill
           className="object-cover"
-          unoptimized
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/65" />
         <ScrollReveal animation="reveal-scale" threshold={0.1}>

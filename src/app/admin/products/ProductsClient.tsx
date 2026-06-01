@@ -4,6 +4,31 @@ import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { Pencil, Trash2, Plus, X, Upload, RefreshCw, Star, Sparkles } from 'lucide-react'
 
+async function compressImage(file: File): Promise<File> {
+  const MAX_WIDTH = 1600
+  const QUALITY = 0.82
+  return new Promise((resolve) => {
+    const img = new window.Image()
+    const url = URL.createObjectURL(file)
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      let { width, height } = img
+      if (width > MAX_WIDTH) { height = Math.round((height * MAX_WIDTH) / width); width = MAX_WIDTH }
+      const canvas = document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      canvas.getContext('2d')!.drawImage(img, 0, 0, width, height)
+      canvas.toBlob((blob) => {
+        if (!blob) { resolve(file); return }
+        const out = new File([blob], file.name.replace(/\.[^.]+$/, '.jpg'), { type: 'image/jpeg' })
+        resolve(out.size < file.size ? out : file)
+      }, 'image/jpeg', QUALITY)
+    }
+    img.onerror = () => { URL.revokeObjectURL(url); resolve(file) }
+    img.src = url
+  })
+}
+
 type Product = {
   id: string
   name: string
@@ -75,9 +100,10 @@ function ProductForm({
     setForm((p) => ({ ...p, [key]: value }))
   }
 
-  async function handleImageUpload(file: File) {
+  async function handleImageUpload(rawFile: File) {
     setUploading(true)
     try {
+      const file = await compressImage(rawFile)
       const fd = new FormData()
       fd.append('file', file)
       fd.append('folder', 'products')
@@ -114,7 +140,7 @@ function ProductForm({
             onClick={() => fileRef.current?.click()}
           >
             {form.image_url ? (
-              <Image src={form.image_url} alt="Product" fill className="object-cover" unoptimized />
+              <Image src={form.image_url} alt="Product" fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
             ) : uploading ? (
               <div className="text-center">
                 <RefreshCw size={24} className="animate-spin text-[#6B6660] mx-auto mb-2" />
@@ -441,7 +467,7 @@ export default function ProductsClient({ initialProducts }: { initialProducts: P
                 <div className="bg-white border border-[#EEECE8] p-4 flex items-center gap-4 hover:border-[#C8C5BE] transition-colors">
                   <div className="relative w-20 h-16 shrink-0 bg-[#F8F7F4] overflow-hidden">
                     {product.image_url && (
-                      <Image src={product.image_url} alt={product.name} fill className="object-cover" unoptimized />
+                      <Image src={product.image_url} alt={product.name} fill className="object-cover" sizes="80px" />
                     )}
                   </div>
 

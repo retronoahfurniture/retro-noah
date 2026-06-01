@@ -287,7 +287,6 @@ export default function GalleryPage() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                    unoptimized
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end p-4 opacity-0 group-hover:opacity-100">
                     <div>
@@ -345,7 +344,7 @@ export default function GalleryPage() {
               alt={lightbox.title}
               fill
               className="object-contain"
-              unoptimized
+              sizes="(max-width: 768px) 100vw, 90vw"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-5">
               <p className="text-[10px] tracking-[0.2em] uppercase text-white/60 mb-1">{lightbox.range}</p>

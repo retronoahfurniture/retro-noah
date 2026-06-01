@@ -50,7 +50,7 @@ export default function AboutPage() {
           fill
           priority
           className="object-cover"
-          unoptimized
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full">
@@ -86,7 +86,7 @@ export default function AboutPage() {
                 alt="Werner Geyer — Founder of Retro Noah Furniture"
                 fill
                 className="object-cover object-top"
-                unoptimized
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
           </ScrollReveal>
@@ -137,7 +137,7 @@ export default function AboutPage() {
                 alt="Reclaimed wood planks — Oregon pine and Baltic fir"
                 fill
                 className="object-cover"
-                unoptimized
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
           </ScrollReveal>
