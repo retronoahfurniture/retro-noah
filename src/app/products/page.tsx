@@ -379,7 +379,7 @@ export default function ProductsPage() {
                         {formatPrice(product.priceFrom, product.priceTo)}
                       </p>
                       <a
-                        href={`https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%27m%20interested%20in%20the%20${encodeURIComponent(product.name)}.`}
+                        href={`https://wa.me/27795199747?text=Hi%20Retro%20Noah%2C%20I%27m%20interested%20in%20the%20${encodeURIComponent(product.name)}.`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[11px] tracking-[0.1em] uppercase font-medium text-[#1A1714] flex items-center gap-1.5 hover:gap-3 transition-all border-b border-[#1A1714] pb-0.5"
@@ -406,7 +406,7 @@ export default function ProductsPage() {
             Every piece is custom built. Send us your dimensions, style ideas, and desired finish — we&apos;ll quote within 24 hours.
           </p>
           <a
-            href="https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%27d%20like%20to%20discuss%20a%20custom%20order."
+            href="https://wa.me/27795199747?text=Hi%20Retro%20Noah%2C%20I%27d%20like%20to%20discuss%20a%20custom%20order."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#1A1714] text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#F8F7F4] transition-colors"

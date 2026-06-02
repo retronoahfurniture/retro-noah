@@ -13,7 +13,7 @@ export default function WhatsAppButton() {
         </div>
       )}
       <a
-        href="https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%27d%20love%20to%20enquire%20about%20a%20piece%20of%20furniture."
+        href="https://wa.me/27795199747?text=Hi%20Retro%20Noah%2C%20I%27d%20love%20to%20enquire%20about%20a%20piece%20of%20furniture."
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-pulse w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:bg-[#20BD5A] transition-colors"

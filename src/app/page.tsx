@@ -139,7 +139,7 @@ export default function Home() {
               View Our Work
             </Link>
             <a
-              href="https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%27d%20like%20to%20discuss%20a%20piece%20of%20furniture."
+              href="https://wa.me/27795199747?text=Hi%20Retro%20Noah%2C%20I%27d%20like%20to%20discuss%20a%20piece%20of%20furniture."
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 border border-white/70 text-white text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-white hover:text-[#1A1714] transition-colors"
@@ -340,7 +340,7 @@ export default function Home() {
           <ScrollReveal animation="reveal-3d" delay={360} threshold={0.08}>
             <div className="mt-12 text-center">
               <a
-                href="https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%20have%20a%20furniture%20enquiry."
+                href="https://wa.me/27795199747?text=Hi%20Retro%20Noah%2C%20I%20have%20a%20furniture%20enquiry."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-10 py-4 bg-white text-[#1A1714] text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#F8F7F4] transition-colors"
@@ -384,7 +384,7 @@ export default function Home() {
           <ScrollReveal animation="reveal-3d" delay={400} threshold={0.08}>
             <div className="mt-10 text-center">
               <a
-                href="https://wa.me/27792808500"
+                href="https://wa.me/27795199747"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-[#1A1714] text-white text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#2D2926] transition-colors"
@@ -428,7 +428,7 @@ export default function Home() {
               Reach out today. We respond quickly and love hearing about your vision.
             </p>
             <a
-              href="https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%27d%20like%20to%20enquire%20about%20a%20custom%20piece."
+              href="https://wa.me/27795199747?text=Hi%20Retro%20Noah%2C%20I%27d%20like%20to%20enquire%20about%20a%20custom%20piece."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-10 py-4 bg-white text-[#1A1714] text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#F8F7F4] transition-colors"

@@ -78,7 +78,7 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-4">
               <a
-                href="https://wa.me/27792808500"
+                href="https://wa.me/27795199747"
                 className="flex items-start gap-3 text-white/60 text-sm hover:text-white transition-colors group"
               >
                 <Phone size={14} className="mt-0.5 shrink-0 group-hover:text-[#25D366]" />
@@ -128,7 +128,7 @@ export default function Footer() {
               </a>
             </div>
             <a
-              href="https://wa.me/27792808500"
+              href="https://wa.me/27795199747"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white text-sm font-medium hover:bg-[#20BD5A] transition-colors"

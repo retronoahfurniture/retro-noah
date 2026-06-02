@@ -316,7 +316,7 @@ export default function GalleryPage() {
             Every piece is made to your specifications. Reach out on WhatsApp and let&apos;s talk about building yours.
           </p>
           <a
-            href="https://wa.me/27792808500?text=Hi%20Retro%20Noah%2C%20I%20saw%20something%20in%20your%20gallery%20I%27d%20like%20to%20discuss."
+            href="https://wa.me/27795199747?text=Hi%20Retro%20Noah%2C%20I%20saw%20something%20in%20your%20gallery%20I%27d%20like%20to%20discuss."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#1A1714] text-white text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#2D2926] transition-colors"

@@ -131,7 +131,7 @@ export default function FAQPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://wa.me/27792808500"
+              href="https://wa.me/27795199747"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 bg-[#1A1714] text-white text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#2D2926] transition-colors"

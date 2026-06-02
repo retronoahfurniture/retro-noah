@@ -42,7 +42,7 @@ export default function ContactPage() {
     const waText = encodeURIComponent(
       `Hi Retro Noah! I'm ${formData.name}.\n\nProduct Interest: ${formData.productType || 'General enquiry'}\n\nMessage: ${formData.message}\n\nContact: ${formData.email}${formData.phone ? ` / ${formData.phone}` : ''}`
     )
-    window.open(`https://wa.me/27792808500?text=${waText}`, '_blank')
+    window.open(`https://wa.me/27795199747?text=${waText}`, '_blank')
     setSubmitted(true)
   }
 
@@ -72,7 +72,7 @@ export default function ContactPage() {
 
             <div className="flex flex-col gap-6 mb-10">
               <a
-                href="https://wa.me/27792808500"
+                href="https://wa.me/27795199747"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-start gap-4 group"
