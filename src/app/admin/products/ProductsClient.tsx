@@ -398,6 +398,10 @@ export default function ProductsClient({ initialProducts }: { initialProducts: P
         <div>
           <h1 className="font-display text-3xl text-[#1A1714]">Products</h1>
           <p className="text-[#6B6660] text-sm mt-1">{products.length} products</p>
+          <p className="text-[#6B6660] text-xs mt-1 flex items-center gap-1">
+            <Star size={11} className="text-[#8B7355]" />
+            Starred products appear in the <strong>Featured Pieces</strong> section on the homepage (up to 4)
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <button

@@ -1,7 +1,22 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Award, Leaf, Ruler, Heart } from 'lucide-react'
 import ScrollReveal from '@/components/ScrollReveal'
+
+export const metadata: Metadata = {
+  title: 'Retro Noah Furniture | Handcrafted Reclaimed Wood Furniture Randburg',
+  description:
+    'Bespoke furniture handcrafted from reclaimed wood in Randburg, Johannesburg. Custom dining tables, coffee tables, benches & vanities. Made to order, delivered across Gauteng. WhatsApp us for a quote.',
+  alternates: { canonical: 'https://retronoah.co.za' },
+  openGraph: {
+    title: 'Retro Noah Furniture | Handcrafted Reclaimed Wood Furniture Randburg',
+    description:
+      'Bespoke furniture handcrafted from reclaimed wood in Randburg, Johannesburg. Custom dining tables, benches, vanities and more.',
+    url: 'https://retronoah.co.za',
+    images: [{ url: '/dining.png', width: 1200, height: 630, alt: 'Retro Noah Furniture' }],
+  },
+}
 
 const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
 
@@ -79,34 +94,37 @@ const values = [
   },
 ]
 
-const featuredProducts = [
-  {
-    name: 'Harvest Dining Table',
-    category: 'Dining Table',
-    image: `${BASE}/dining-tables/dt-25.jpg`,
-    range: 'Harvest Range',
-  },
-  {
-    name: 'Reclaimed Dining Table',
-    category: 'Dining Table',
-    image: `${BASE}/dining-tables/dt-33.jpg`,
-    range: 'Farmhouse Range',
-  },
-  {
-    name: 'Bathroom Vanity',
-    category: 'Bathroom Vanity',
-    image: `${BASE}/vanities/v-14.jpg`,
-    range: 'Farmhouse Range',
-  },
-  {
-    name: 'Dining Bench',
-    category: 'Bench',
-    image: `${BASE}/benches/b-01.png`,
-    range: 'Farmhouse Range',
-  },
+const fallbackFeatured = [
+  { name: 'Harvest Dining Table',  category: 'Dining Table',    image: `${BASE}/dining-tables/dt-25.jpg`, range: 'Harvest Range'   },
+  { name: 'Reclaimed Dining Table', category: 'Dining Table',   image: `${BASE}/dining-tables/dt-33.jpg`, range: 'Farmhouse Range' },
+  { name: 'Bathroom Vanity',        category: 'Bathroom Vanity', image: `${BASE}/vanities/v-14.jpg`,       range: 'Farmhouse Range' },
+  { name: 'Dining Bench',           category: 'Bench',           image: `${BASE}/benches/b-01.png`,        range: 'Farmhouse Range' },
 ]
 
-export default function Home() {
+async function getFeaturedProducts() {
+  try {
+    const url  = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key  = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    const res  = await fetch(
+      `${url}/rest/v1/products?featured=eq.true&select=name,category,image_url,range_label&order=created_at.asc&limit=4`,
+      { headers: { apikey: key!, Authorization: `Bearer ${key!}` }, cache: 'no-store' }
+    )
+    if (!res.ok) return null
+    const data = await res.json()
+    if (!Array.isArray(data) || data.length === 0) return null
+    return data.map((p: { name: string; category: string; image_url: string; range_label: string }) => ({
+      name:     p.name,
+      category: p.category,
+      image:    p.image_url,
+      range:    p.range_label,
+    }))
+  } catch {
+    return null
+  }
+}
+
+export default async function Home() {
+  const featuredProducts = (await getFeaturedProducts()) ?? fallbackFeatured
   return (
     <>
       {/* HERO */}
