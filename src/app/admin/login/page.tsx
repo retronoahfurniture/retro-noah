@@ -1,36 +1,12 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useActionState } from 'react'
 import Image from 'next/image'
 import { Suspense } from 'react'
+import { loginAction } from './actions'
 
 function LoginForm() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
-
-    const res = await fetch('/api/admin/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password }),
-    })
-
-    if (res.ok) {
-      const from = searchParams.get('from') || '/admin/gallery'
-      router.replace(from)
-    } else {
-      setError('Incorrect password.')
-      setLoading(false)
-    }
-  }
+  const [error, formAction, isPending] = useActionState(loginAction, null)
 
   return (
     <div className="min-h-screen bg-[#1A1714] flex items-center justify-center px-4">
@@ -42,32 +18,30 @@ function LoginForm() {
             width={80}
             height={80}
             className="opacity-80 brightness-0 invert"
+            priority
           />
         </div>
         <h1 className="font-display text-3xl text-white text-center mb-2">Admin</h1>
         <p className="text-white/40 text-xs text-center tracking-[0.15em] uppercase mb-10">Retro Noah</p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              autoFocus
-              required
-              className="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 px-4 py-3 text-sm focus:outline-none focus:border-white/30 transition-colors"
-            />
-          </div>
+        <form action={formAction} className="space-y-4">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            autoFocus
+            required
+            className="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 px-4 py-3 text-sm focus:outline-none focus:border-white/30 transition-colors"
+          />
           {error && (
             <p className="text-red-400 text-xs text-center">{error}</p>
           )}
           <button
             type="submit"
-            disabled={loading}
+            disabled={isPending}
             className="w-full py-3 bg-white text-[#1A1714] text-[12px] tracking-[0.12em] uppercase font-medium hover:bg-[#F8F7F4] transition-colors disabled:opacity-50"
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {isPending ? 'Signing in…' : 'Sign In'}
           </button>
         </form>
       </div>
