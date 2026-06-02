@@ -7,9 +7,23 @@ import ScrollReveal from '@/components/ScrollReveal'
 const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
 
 export const metadata: Metadata = {
-  title: 'Our Story | Retro Noah Furniture',
+  title: 'About — Our Story & the Founder',
   description:
-    'The story behind Retro Noah Furniture — founded by Werner Geyer in Randburg, Johannesburg. Handcrafted bespoke furniture rooted in faith, family and reclaimed wood.',
+    'Meet Werner Geyer, founder of Retro Noah Furniture in Randburg, Johannesburg. A family business crafting bespoke reclaimed wood furniture rooted in faith, craftsmanship and community.',
+  keywords: [
+    'Retro Noah founder',
+    'Werner Geyer furniture',
+    'furniture maker Randburg',
+    'family furniture business Johannesburg',
+    'reclaimed wood craftsman Gauteng',
+  ],
+  alternates: { canonical: 'https://retronoah.co.za/about' },
+  openGraph: {
+    title: 'About | Retro Noah Furniture — Our Story',
+    description:
+      'Meet Werner Geyer, founder of Retro Noah Furniture. A family business handcrafting bespoke furniture from reclaimed wood in Randburg, Johannesburg.',
+    url: 'https://retronoah.co.za/about',
+  },
 }
 
 const milestones = [
