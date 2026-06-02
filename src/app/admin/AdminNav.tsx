@@ -3,11 +3,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { Images, Package, LogOut, Home } from 'lucide-react'
+import { Images, Package, LogOut, Home, LayoutTemplate } from 'lucide-react'
 
 const navItems = [
-  { href: '/admin/gallery', label: 'Gallery', icon: Images },
-  { href: '/admin/products', label: 'Products', icon: Package },
+  { href: '/admin/homepage', label: 'Homepage',  icon: LayoutTemplate },
+  { href: '/admin/gallery',  label: 'Gallery',   icon: Images          },
+  { href: '/admin/products', label: 'Products',  icon: Package         },
 ]
 
 export default function AdminNav() {

@@ -20,36 +20,6 @@ export const metadata: Metadata = {
 
 const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
 
-const ranges = [
-  {
-    id: 'harvest',
-    name: 'Harvest Range',
-    subtitle: 'French Country',
-    description:
-      'Classic French Country elegance — natural oak wash, turned or pedestal legs, timeless proportions. Our most beloved range for families who gather around the table.',
-    image: `${BASE}/dining-tables/dt-09.png`,
-    href: '/products?range=harvest',
-  },
-  {
-    id: 'farmhouse',
-    name: 'Farmhouse Range',
-    subtitle: 'Organic & Rustic',
-    description:
-      'Organic, earthy, and beautifully imperfect. French oak wash and aged walnut finishes over reclaimed Baltic fir. Made for homes that breathe.',
-    image: `${BASE}/dining-tables/dt-03.png`,
-    href: '/products?range=farmhouse',
-  },
-  {
-    id: 'industrial',
-    name: 'Industrial Range',
-    subtitle: 'Wood & Steel',
-    description:
-      'Steel cube bases and A-frames meet 70-year-old reclaimed wood. Bold, architectural, and unapologetically modern. For spaces that make a statement.',
-    image: `${BASE}/dining-tables/dt-24.jpg`,
-    href: '/products?range=industrial',
-  },
-]
-
 const processSteps = [
   {
     step: '01',
@@ -101,6 +71,32 @@ const fallbackFeatured = [
   { name: 'Dining Bench',           category: 'Bench',           image: `${BASE}/benches/b-01.png`,        range: 'Farmhouse Range' },
 ]
 
+const FALLBACK_SETTINGS = {
+  hero_image:             `${BASE}/dining-tables/dt-02.png`,
+  range_harvest_image:    `${BASE}/dining-tables/dt-09.png`,
+  range_farmhouse_image:  `${BASE}/dining-tables/dt-03.png`,
+  range_industrial_image: `${BASE}/dining-tables/dt-24.jpg`,
+  cta_image:              `${BASE}/outdoor/out-02.jpg`,
+}
+
+async function getSiteSettings() {
+  try {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    const res = await fetch(`${url}/rest/v1/site_settings?select=key,value`, {
+      headers: { apikey: key!, Authorization: `Bearer ${key!}` },
+      cache: 'no-store',
+    })
+    if (!res.ok) return FALLBACK_SETTINGS
+    const rows = await res.json() as { key: string; value: string }[]
+    const settings = { ...FALLBACK_SETTINGS }
+    for (const row of rows) if (row.key in settings) (settings as Record<string, string>)[row.key] = row.value
+    return settings
+  } catch {
+    return FALLBACK_SETTINGS
+  }
+}
+
 async function getFeaturedProducts() {
   try {
     const url  = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -124,13 +120,45 @@ async function getFeaturedProducts() {
 }
 
 export default async function Home() {
-  const featuredProducts = (await getFeaturedProducts()) ?? fallbackFeatured
+  const [siteSettings, featuredProducts] = await Promise.all([
+    getSiteSettings(),
+    getFeaturedProducts(),
+  ])
+  const displayProducts = featuredProducts ?? fallbackFeatured
+
+  const ranges = [
+    {
+      id: 'harvest',
+      name: 'Harvest Range',
+      subtitle: 'French Country',
+      description: 'Classic French Country elegance — natural oak wash, turned or pedestal legs, timeless proportions. Our most beloved range for families who gather around the table.',
+      image: siteSettings.range_harvest_image,
+      href: '/products?range=harvest',
+    },
+    {
+      id: 'farmhouse',
+      name: 'Farmhouse Range',
+      subtitle: 'Organic & Rustic',
+      description: 'Organic, earthy, and beautifully imperfect. French oak wash and aged walnut finishes over reclaimed Baltic fir. Made for homes that breathe.',
+      image: siteSettings.range_farmhouse_image,
+      href: '/products?range=farmhouse',
+    },
+    {
+      id: 'industrial',
+      name: 'Industrial Range',
+      subtitle: 'Wood & Steel',
+      description: 'Steel cube bases and A-frames meet 70-year-old reclaimed wood. Bold, architectural, and unapologetically modern. For spaces that make a statement.',
+      image: siteSettings.range_industrial_image,
+      href: '/products?range=industrial',
+    },
+  ]
+
   return (
     <>
       {/* HERO */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <Image
-          src="/dining.png"
+          src={siteSettings.hero_image}
           alt="Retro Noah Furniture — handcrafted dining table"
           fill
           priority
@@ -237,7 +265,7 @@ export default async function Home() {
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {featuredProducts.map((product, i) => (
+            {displayProducts.map((product, i) => (
               <ScrollReveal key={product.name} animation="reveal-3d" delay={i * 110} threshold={0.08}>
                 <Link href="/gallery" className="group block lift-hover">
                   <div className="relative overflow-hidden aspect-[3/4] bg-[#EEECE8] mb-3 img-hover-zoom">
@@ -430,7 +458,7 @@ export default async function Home() {
       {/* FINAL CTA */}
       <section className="relative py-28 lg:py-44 overflow-hidden">
         <Image
-          src={`${BASE}/outdoor/out-02.jpg`}
+          src={siteSettings.cta_image}
           alt="Retro Noah outdoor furniture set"
           fill
           className="object-cover"
