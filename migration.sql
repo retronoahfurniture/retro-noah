@@ -35,9 +35,43 @@ BEGIN
   END IF;
 END $$;
 
--- 2. Add columns to products table
-ALTER TABLE products ADD COLUMN IF NOT EXISTS is_new BOOLEAN DEFAULT FALSE;
-ALTER TABLE products ADD COLUMN IF NOT EXISTS range_label TEXT;
+-- 2. Products table (create fresh on new project)
+CREATE TABLE IF NOT EXISTS products (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  category TEXT NOT NULL DEFAULT 'other',
+  range TEXT NOT NULL DEFAULT 'harvest',
+  range_label TEXT,
+  description TEXT NOT NULL DEFAULT '',
+  price_from INTEGER DEFAULT 0,
+  price_to INTEGER DEFAULT 0,
+  sizes TEXT[] DEFAULT '{}',
+  image_url TEXT NOT NULL DEFAULT '',
+  images TEXT[] DEFAULT '{}',
+  featured BOOLEAN DEFAULT FALSE,
+  is_new BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE tablename = 'products' AND policyname = 'Public can read products'
+  ) THEN
+    CREATE POLICY "Public can read products" ON products FOR SELECT USING (true);
+  END IF;
+END $$;
+
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE tablename = 'products' AND policyname = 'Service role can manage products'
+  ) THEN
+    CREATE POLICY "Service role can manage products" ON products USING (auth.role() = 'service_role');
+  END IF;
+END $$;
 
 -- 3. Site settings table (homepage images + other configurable values)
 CREATE TABLE IF NOT EXISTS site_settings (
