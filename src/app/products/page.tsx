@@ -43,7 +43,7 @@ const ranges = [
   { id: 'industrial', label: 'Industrial Range' },
 ]
 
-const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
+const BASE = 'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn'
 
 const products = [
   {

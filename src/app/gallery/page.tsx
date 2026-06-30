@@ -27,7 +27,7 @@ type GalleryItem = {
   range?: string
 }
 
-const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
+const BASE = 'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn'
 
 const galleryItems = [
   // ── DINING TABLES ──────────────────────────────────────────────────

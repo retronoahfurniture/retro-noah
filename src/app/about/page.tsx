@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { ArrowRight } from 'lucide-react'
 import ScrollReveal from '@/components/ScrollReveal'
 
-const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
+const BASE = 'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn'
 
 export const metadata: Metadata = {
   title: 'About — Our Story & the Founder',

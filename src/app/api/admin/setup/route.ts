@@ -3,7 +3,7 @@ import { adminFetch } from '@/lib/supabase-admin'
 
 export const dynamic = 'force-dynamic'
 
-const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
+const BASE = 'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn'
 
 const seedGallery = [
   { src: `${BASE}/dining-tables/dt-02.png`, alt: 'Reclaimed Wood Dining Table', category: 'dining-table', tall: false, sort_order: 1 },

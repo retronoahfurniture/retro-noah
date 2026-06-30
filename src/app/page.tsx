@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
 }
 
-const BASE = 'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn'
+const BASE = 'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn'
 
 const processSteps = [
   {

@@ -1,7 +1,7 @@
 -- ============================================================
 -- Retro Noah Admin Panel Migration
 -- Run this in the Supabase SQL Editor:
--- https://supabase.com/dashboard/project/yumopzfpzlqejprwpcrp/sql/new
+-- https://supabase.com/dashboard/project/kefrsmafzdbqszxadnik/sql/new
 -- ============================================================
 
 -- 1. Gallery Items table
@@ -67,9 +67,9 @@ BEGIN
 END $$;
 
 INSERT INTO site_settings (key, value) VALUES
-  ('hero_image',              'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn/dining-tables/dt-02.png'),
-  ('range_harvest_image',     'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn/dining-tables/dt-09.png'),
-  ('range_farmhouse_image',   'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn/dining-tables/dt-03.png'),
-  ('range_industrial_image',  'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn/dining-tables/dt-24.jpg'),
-  ('cta_image',               'https://yumopzfpzlqejprwpcrp.supabase.co/storage/v1/object/public/product-images/rn/outdoor/out-02.jpg')
+  ('hero_image',              'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn/dining-tables/dt-02.png'),
+  ('range_harvest_image',     'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn/dining-tables/dt-09.png'),
+  ('range_farmhouse_image',   'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn/dining-tables/dt-03.png'),
+  ('range_industrial_image',  'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn/dining-tables/dt-24.jpg'),
+  ('cta_image',               'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn/outdoor/out-02.jpg')
 ON CONFLICT (key) DO NOTHING;
