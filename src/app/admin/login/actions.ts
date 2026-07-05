@@ -2,7 +2,7 @@
 
 import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { clientIp, isRateLimited, recordFailedAttempt, clearAttempts, LOCKOUT_MESSAGE } from '@/lib/rate-limit'
+import { clientIp, isRateLimited, recordFailedAttempt, clearAttempts, attemptsLeftMessage, LOCKOUT_MESSAGE } from '@/lib/rate-limit'
 
 export async function loginAction(_prev: string | null, formData: FormData): Promise<string | null> {
   const ip = clientIp(await headers())
@@ -14,8 +14,8 @@ export async function loginAction(_prev: string | null, formData: FormData): Pro
   const password = formData.get('password') as string
 
   if (!password || password !== process.env.ADMIN_PASSWORD) {
-    await recordFailedAttempt(ip)
-    return 'Incorrect password.'
+    const attemptCount = await recordFailedAttempt(ip)
+    return attemptsLeftMessage(attemptCount)
   }
 
   await clearAttempts(ip)

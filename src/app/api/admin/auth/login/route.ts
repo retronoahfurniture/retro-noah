@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { clientIp, isRateLimited, recordFailedAttempt, clearAttempts, LOCKOUT_MESSAGE } from '@/lib/rate-limit'
+import { clientIp, isRateLimited, recordFailedAttempt, clearAttempts, attemptsLeftMessage, LOCKOUT_MESSAGE } from '@/lib/rate-limit'
 
 export async function POST(req: NextRequest) {
   const ip = clientIp(req.headers)
@@ -11,8 +11,8 @@ export async function POST(req: NextRequest) {
   const { password } = await req.json()
 
   if (!password || password !== process.env.ADMIN_PASSWORD) {
-    await recordFailedAttempt(ip)
-    return NextResponse.json({ error: 'Invalid password' }, { status: 401 })
+    const attemptCount = await recordFailedAttempt(ip)
+    return NextResponse.json({ error: attemptsLeftMessage(attemptCount) }, { status: 401 })
   }
 
   await clearAttempts(ip)

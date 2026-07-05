@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Suspense } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 import { loginAction } from './actions'
+import { MAX_LOGIN_ATTEMPTS, LOGIN_WINDOW_MIN } from '@/lib/rate-limit-config'
 
 function LoginForm() {
   const [error, formAction, isPending] = useActionState(loginAction, null)
@@ -57,6 +58,11 @@ function LoginForm() {
             {isPending ? 'Signing in…' : 'Sign In'}
           </button>
         </form>
+
+        <p className="text-white/30 text-[11px] leading-relaxed text-center mt-6">
+          For security, you have {MAX_LOGIN_ATTEMPTS} login attempts. After that,
+          login is locked for {LOGIN_WINDOW_MIN} minutes.
+        </p>
       </div>
     </div>
   )
