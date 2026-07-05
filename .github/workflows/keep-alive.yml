@@ -1,0 +1,25 @@
+name: Keep Supabase Alive
+
+# Supabase pauses free-tier projects after ~7 days of inactivity.
+# This pings the database twice a week (Tue & Fri) so it never idles out.
+# The URL + anon key below are public by design (they ship in the website's
+# client-side JS), so it's safe to keep them here — no secrets required.
+
+on:
+  schedule:
+    - cron: '0 12 * * 2,5'   # Tuesdays & Fridays at 12:00 UTC (max gap ~4 days)
+  workflow_dispatch:          # lets you run it manually from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query Supabase to keep the project active
+        run: |
+          echo "Pinging Supabase at $(date -u)"
+          curl --fail-with-body -sS \
+            "https://kefrsmafzdbqszxadnik.supabase.co/rest/v1/site_settings?select=key&limit=1" \
+            -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlZnJzbWFmemRicXN6eGFkbmlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4MjE1NzUsImV4cCI6MjA5ODM5NzU3NX0.0T0ut9DLIdDOsVXkecSAVKOJvNv1ZOExU6csHMmAQfs" \
+            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlZnJzbWFmemRicXN6eGFkbmlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4MjE1NzUsImV4cCI6MjA5ODM5NzU3NX0.0T0ut9DLIdDOsVXkecSAVKOJvNv1ZOExU6csHMmAQfs"
+          echo ""
+          echo "Ping successful."
