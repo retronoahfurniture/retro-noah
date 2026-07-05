@@ -100,6 +100,19 @@ BEGIN
   END IF;
 END $$;
 
+-- 4. Login attempts table (brute-force rate limiting for admin login)
+--    No RLS policies on purpose: only the service_role key (which bypasses
+--    RLS) may read/write it; the public anon key gets nothing.
+CREATE TABLE IF NOT EXISTS login_attempts (
+  id BIGSERIAL PRIMARY KEY,
+  ip TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_login_attempts_ip_time ON login_attempts (ip, created_at);
+
+ALTER TABLE login_attempts ENABLE ROW LEVEL SECURITY;
+
 INSERT INTO site_settings (key, value) VALUES
   ('hero_image',              'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn/dining-tables/dt-02.png'),
   ('range_harvest_image',     'https://kefrsmafzdbqszxadnik.supabase.co/storage/v1/object/public/product-images/rn/dining-tables/dt-09.png'),
